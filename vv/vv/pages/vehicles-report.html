@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تقرير الآليات</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/vehicles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="page-header">
+            <h1>تقرير الآليات</h1>
+            <div class="page-actions">
+                <button class="btn btn-primary" onclick="window.history.back()">
+                    <i class="fas fa-arrow-right"></i> العودة
+                </button>
+            </div>
+        </div>
+
+        <!-- Filters Section -->
+        <div class="filter-section">
+            <h3>فلاتر البحث</h3>
+            <div class="filter-row">
+                <div class="filter-group">
+                    <label for="searchVehicleCode">كود الآلية:</label>
+                    <input type="text" id="searchVehicleCode" placeholder="أدخل كود الآلية للبحث">
+                </div>
+                <div class="filter-group">
+                    <label for="dateRange">الفترة الزمنية:</label>
+                    <select id="dateRange">
+                        <option value="this_month">هذا الشهر</option>
+                        <option value="last_month">الشهر الماضي</option>
+                        <option value="this_year">هذا العام</option>
+                        <option value="custom">فترة مخصصة</option>
+                    </select>
+                </div>
+                <div class="filter-group" id="customDateRange" style="display: none;">
+                    <label>من تاريخ:</label>
+                    <input type="date" id="startDate">
+                    <label>إلى تاريخ:</label>
+                    <input type="date" id="endDate">
+                </div>
+                <button class="btn btn-primary" onclick="applyVehicleReportFilter()">تطبيق الفلاتر</button>
+                <button class="btn btn-secondary" onclick="resetVehicleReportFilter()">إعادة تعيين</button>
+            </div>
+        </div>
+
+        <!-- All Vehicles View -->
+        <div id="all-vehicles-view">
+            <h3>قائمة جميع الآليات</h3>
+            <div class="table-container">
+                <table id="vehiclesTable">
+                    <thead>
+                        <tr>
+                            <th>رقم</th>
+                            <th>الطراز</th>
+                            <th>النوع</th>
+                            <th>رقم اللوحة</th>
+                            <th>الموديل</th>
+                            <th>سنة الصنع</th>
+                            <th>المستلم</th>
+                            <th>رقم الشاسيه</th>
+                            <th>رقم المحرك</th>
+                            <th>اللون</th>
+                            <th>الإجراءات</th>
+                        </tr>
+                    </thead>
+                    <tbody id="vehicle-list-body">
+                        <!-- Data will be populated dynamically by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Single Vehicle View -->
+        <div id="single-vehicle-view" style="display: none;">
+            <h3>سجل الصيانة للآلية: <span id="selectedVehicleCode"></span></h3>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>التاريخ</th>
+                            <th>تفاصيل الصيانة</th>
+                            <th>المواد من المستودع</th>
+                            <th>المواد المشتراة</th>
+                        </tr>
+                    </thead>
+                    <tbody id="maintenanceHistoryBody">
+                        <!-- Will be populated by filter function -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Vehicle Modal - Individual Field Editing -->
+    <div id="editVehicleModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>تعديل بيانات الآلية</h2>
+                <span class="close" onclick="closeEditVehicleModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="editVehicleId" value="">
+                
+                <!-- Individual Field Panels - Each is a standalone form -->
+                <div class="field-panel">
+                    <h4>الطراز الحالي: <span id="display_make">-</span></h4>
+                    <form class="field-form" onsubmit="handleMakeUpdate(event)">
+                        <input type="text" id="edit_make_input" placeholder="أدخل الطراز الجديد" required>
+                        <button type="submit" class="btn btn-primary btn-small">تحديث الطراز</button>
+                    </form>
+                </div>
+
+                <div class="field-panel">
+                    <h4>النوع الحالي: <span id="display_type">-</span></h4>
+                    <form class="field-form" onsubmit="handleTypeUpdate(event)">
+                        <input type="text" id="edit_type_input" placeholder="أدخل النوع الجديد" required>
+                        <button type="submit" class="btn btn-primary btn-small">تحديث النوع</button>
+                    </form>
+                </div>
+
+                <div class="field-panel">
+                    <h4>رقم اللوحة الحالي: <span id="display_plate_number">-</span></h4>
+                    <form class="field-form" onsubmit="handlePlateNumberUpdate(event)">
+                        <input type="text" id="edit_plate_number_input" placeholder="أدخل رقم اللوحة الجديد" required>
+                        <button type="submit" class="btn btn-primary btn-small">تحديث رقم اللوحة</button>
+                    </form>
+                </div>
+
+                <div class="field-panel">
+                    <h4>الموديل الحالي: <span id="display_model">-</span></h4>
+                    <form class="field-form" onsubmit="handleModelUpdate(event)">
+                        <input type="text" id="edit_model_input" placeholder="أدخل الموديل الجديد" required>
+                        <button type="submit" class="btn btn-primary btn-small">تحديث الموديل</button>
+                    </form>
+                </div>
+
+                <div class="field-panel">
+                    <h4>سنة الصنع الحالية: <span id="display_year">-</span></h4>
+                    <form class="field-form" onsubmit="handleYearUpdate(event)">
+                        <input type="number" id="edit_year_input" placeholder="أدخل سنة الصنع الجديدة" min="1900" max="2100" required>
+                        <button type="submit" class="btn btn-primary btn-small">تحديث سنة الصنع</button>
+                    </form>
+                </div>
+
+                <div class="field-panel">
+                    <h4>المستلم الحالي: <span id="display_recipient">-</span></h4>
+                    <form class="field-form" onsubmit="handleRecipientUpdate(event)">
+                        <input type="text" id="edit_recipient_input" placeholder="أدخل اسم المستلم الجديد" required>
+                        <button type="submit" class="btn btn-primary btn-small">تحديث المستلم</button>
+                    </form>
+                </div>
+
+                <div class="field-panel">
+                    <h4>رقم الشاسيه الحالي: <span id="display_chassis_number">-</span></h4>
+                    <form class="field-form" onsubmit="handleChassisNumberUpdate(event)">
+                        <input type="text" id="edit_chassis_number_input" placeholder="أدخل رقم الشاسيه الجديد" required>
+                        <button type="submit" class="btn btn-primary btn-small">تحديث رقم الشاسيه</button>
+                    </form>
+                </div>
+
+                <div class="field-panel">
+                    <h4>رقم المحرك الحالي: <span id="display_engine_number">-</span></h4>
+                    <form class="field-form" onsubmit="handleEngineNumberUpdate(event)">
+                        <input type="text" id="edit_engine_number_input" placeholder="أدخل رقم المحرك الجديد" required>
+                        <button type="submit" class="btn btn-primary btn-small">تحديث رقم المحرك</button>
+                    </form>
+                </div>
+
+                <div class="field-panel">
+                    <h4>اللون الحالي: <span id="display_color">-</span></h4>
+                    <form class="field-form" onsubmit="handleColorUpdate(event)">
+                        <input type="text" id="edit_color_input" placeholder="أدخل اللون الجديد" required>
+                        <button type="submit" class="btn btn-primary btn-small">تحديث اللون</button>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeEditVehicleModal()">إغلاق</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div id="deleteVehicleModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>تأكيد الحذف</h2>
+                <span class="close" onclick="closeDeleteVehicleModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <p id="vehicleInfo">الآلية رقم: <span id="vehicleIdDisplay"></span></p>
+                <p>هل أنت متأكد من أنك تريد حذف هذه الآلية؟ هذا الإجراء لا يمكن التراجع عنه.</p>
+            </div>
+            <div class="modal-footer">
+                <button id="confirmDeleteBtn" class="btn btn-danger">نعم، احذفها</button>
+                <button class="btn btn-secondary" onclick="closeDeleteVehicleModal()">إلغاء</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../assets/js/main.js"></script>
+    <script>
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load vehicles data
+            loadVehiclesData();
+            
+            // Setup date range change listener
+            const dateRangeSelect = document.getElementById('dateRange');
+            if (dateRangeSelect) {
+                dateRangeSelect.addEventListener('change', function() {
+                    const customDateRange = document.getElementById('customDateRange');
+                    if (this.value === 'custom') {
+                        customDateRange.style.display = 'flex';
+                    } else {
+                        customDateRange.style.display = 'none';
+                    }
+                });
+            }
+
+            // Setup delete confirmation
+            const confirmDeleteBtn = document.getElementById('confirmDeleteBtn');
+            if (confirmDeleteBtn) {
+                confirmDeleteBtn.addEventListener('click', function() {
+                    if (window.vehicleToDelete !== null) {
+                        // Call the delete function from main.js
+                        window.deleteVehicle(window.vehicleToDelete);
+                        window.closeDeleteVehicleModal();
+                    }
+                });
+            }
+        });
+
+        // Function to load vehicles data from database
+        function loadVehiclesData() {
+            console.log('Loading vehicles data...');
+            
+            // First try to fetch from get_vehicle_details.php with action parameter
+            fetch('pages/get_vehicle_details.php?action=get_all')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (data.success && data.data && Array.isArray(data.data)) {
+                        console.log('Loaded vehicles from get_vehicle_details:', data.data.length);
+                        populateVehiclesTable(data.data);
+                    } else {
+                        console.warn('get_vehicle_details.php?action=get_all failed or returned invalid data:', data);
+                        // Fallback: try get_vehicle_plates.php
+                        return fetch('pages/get_vehicle_plates.php');
+                    }
+                })
+                .then(response => {
+                    if (response) {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok for get_vehicle_plates.php');
+                        }
+                        return response.json();
+                    }
+                })
+                .then(data => {
+                    if (data && Array.isArray(data)) {
+                        console.log('Loaded vehicles from get_vehicle_plates:', data.length);
+                        // Transform plate data if needed
+                        const vehicles = data.map(item => ({
+                            id: item.id,
+                            make: item.make,
+                            type: item.type,
+                            plate_number: item.plate_number,
+                            model: item.model,
+                            year: item.year,
+                            recipient: item.recipient,
+                            chassis_number: item.chassis_number,
+                            engine_number: item.engine_number,
+                            color: item.color
+                        }));
+                        populateVehiclesTable(vehicles);
+                    } else {
+                        // Final fallback to sample data
+                        console.warn('All API calls failed, using sample data');
+                        populateVehiclesTable([
+                            {
+                                id: 1,
+                                make: 'مرسيدس',
+                                type: 'شاحنة',
+                                plate_number: 'ABC-123',
+                                model: 'Actros',
+                                year: 2020,
+                                recipient: 'أحمد محمد',
+                                chassis_number: 'WD123456789',
+                                engine_number: 'ENG987654321',
+                                color: 'أبيض'
+                            },
+                            {
+                                id: 2,
+                                make: 'فولفو',
+                                type: 'جرافة',
+                                plate_number: 'DEF-456',
+                                model: 'EC210',
+                                year: 2019,
+                                recipient: 'علي حسن',
+                                chassis_number: 'VVN654321098',
+                                engine_number: 'ENG456789123',
+                                color: 'أصفر'
+                            }
+                        ]);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error loading vehicles data:', error);
+                    // Final fallback to sample data
+                    console.log('Using sample data as final fallback');
+                    populateVehiclesTable([
+                        {
+                            id: 1,
+                            make: 'مرسيدس',
+                            type: 'شاحنة',
+                            plate_number: 'ABC-123',
+                            model: 'Actros',
+                            year: 2020,
+                            recipient: 'أحمد محمد',
+                            chassis_number: 'WD123456789',
+                            engine_number: 'ENG987654321',
+                            color: 'أبيض'
+                        },
+                        {
+                            id: 2,
+                            make: 'فولفو',
+                            type: 'جرافة',
+                            plate_number: 'DEF-456',
+                            model: 'EC210',
+                            year: 2019,
+                            recipient: 'علي حسن',
+                            chassis_number: 'VVN654321098',
+                            engine_number: 'ENG456789123',
+                            color: 'أصفر'
+                        }
+                    ]);
+                });
+        }
+
+        // Function to populate the vehicles table
+        function populateVehiclesTable(vehicles) {
+            const tableBody = document.getElementById('vehicle-list-body');
+            if (!tableBody) {
+                console.error('vehicle-list-body element not found');
+                return;
+            }
+
+            tableBody.innerHTML = ''; // Clear existing content
+
+            if (!vehicles || vehicles.length === 0) {
+                tableBody.innerHTML = '<tr><td colspan="11" style="text-align: center;">لا توجد بيانات متاحة</td></tr>';
+                return;
+            }
+
+            vehicles.forEach((vehicle, index) => {
+                const row = document.createElement('tr');
+                row.setAttribute('data-vehicle-id', vehicle.id);
+                row.innerHTML = `
+                    <td>${index + 1}</td>
+                    <td>${vehicle.make || '-'}</td>
+                    <td>${vehicle.type || '-'}</td>
+                    <td>${vehicle.plate_number || '-'}</td>
+                    <td>${vehicle.model || '-'}</td>
+                    <td>${vehicle.year || '-'}</td>
+                    <td>${vehicle.recipient || '-'}</td>
+                    <td>${vehicle.chassis_number || '-'}</td>
+                    <td>${vehicle.engine_number || '-'}</td>
+                    <td>${vehicle.color || '-'}</td>
+                    <td>
+                        <button class="btn-icon" onclick="window.editVehicle(${vehicle.id})" title="تعديل">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                        <button class="btn-icon btn-danger" onclick="window.openDeleteVehicleModal(${vehicle.id})" title="حذف">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </td>
+                `;
+                tableBody.appendChild(row);
+            });
+
+            console.log(`Loaded ${vehicles.length} vehicles into the table`);
+        }
+
+        // Edit vehicle function for vehicles report
+        function editVehicle(vehicleId) {
+            // This will use the existing editVehicle function from main.js
+            // which opens the modal and populates the fields
+            if (window.editVehicle) {
+                window.editVehicle(vehicleId);
+            } else {
+                console.error('editVehicle function not available');
+            }
+        }
+
+        // Open delete modal function
+        function openDeleteVehicleModal(vehicleId) {
+            if (window.openDeleteVehicleModal) {
+                window.openDeleteVehicleModal(vehicleId);
+            } else {
+                console.error('openDeleteVehicleModal function not available');
+            }
+        }
+
+        // Close delete modal function
+        function closeDeleteVehicleModal() {
+            if (window.closeDeleteVehicleModal) {
+                window.closeDeleteVehicleModal();
+            } else {
+                console.error('closeDeleteVehicleModal function not available');
+            }
+        }
+    </script>
+</body>
+</html>

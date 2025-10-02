@@ -1,0 +1,501 @@
+/* Warehouse Page Specific Styles */
+
+/* Header */
+.warehouse-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.warehouse-actions {
+    display: flex;
+    gap: 1rem;
+}
+
+.btn {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.btn-primary {
+    background-color: #667eea;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #5a6fd8;
+}
+
+.btn-success {
+    background-color: #34d399;
+    color: white;
+}
+
+.btn-success:hover {
+    background-color: #2cb98a;
+}
+
+.search-box {
+    position: relative;
+}
+
+.search-box input {
+    padding: 0.75rem 1rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    width: 250px;
+    transition: all 0.3s ease;
+}
+
+.search-box input:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.2);
+}
+
+.search-box i {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #a0aec0;
+}
+
+/* Table Styles */
+.table-container {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+}
+
+.items-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.items-table th, .items-table td {
+    padding: 1.25rem 1.5rem;
+    text-align: right;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.items-table thead {
+    background-color: #f8f9fa;
+}
+
+.items-table th {
+    font-weight: 600;
+    color: #495057;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+}
+
+.items-table tbody tr:hover {
+    background-color: #f1f3f5;
+}
+
+.btn-icon {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    color: #6c757d;
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+}
+
+.btn-edit:hover {
+    color: #667eea;
+}
+
+.btn-delete:hover {
+    color: #ef4444;
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1001;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+    width: 90%;
+    max-width: 500px;
+    animation: slide-down 0.3s ease-out;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.modal-header h3 {
+    font-size: 1.5rem;
+    color: #2c3e50;
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #a0aec0;
+    transition: color 0.3s ease;
+}
+
+.modal-close:hover {
+    color: #4a5568;
+}
+
+.modal-body {
+    padding: 2rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #495057;
+}
+
+.form-group input, .form-group select {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus, .form-group select:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.2);
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.btn-secondary {
+    background-color: #e2e8f0;
+    color: #4a5568;
+}
+
+.btn-secondary:hover {
+    background-color: #cbd5e0;
+}
+
+@keyframes slide-down {
+    from {
+        transform: translateY(-30px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Invoice Specific Styles */
+.btn-info {
+    background-color: #3b82f6;
+    color: white;
+}
+
+.btn-info:hover {
+    background-color: #2563eb;
+}
+
+.modal-content.large {
+    max-width: 900px; /* Increase max-width */
+}
+
+.invoice-item {
+    display: flex;
+    gap: 1rem; /* Increase spacing */
+    margin-bottom: 0.75rem;
+    align-items: center; /* Vertically align items */
+}
+
+.invoice-item input {
+    /* General input styles are inherited */
+    border-radius: 4px; /* Add border radius */
+    font-size: 1.1rem; /* Increase font size */
+    padding: 0.85rem 1.1rem; /* Increase padding */
+    border: none; /* Remove border */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Add box shadow */
+}
+
+/* Custom widths for invoice item inputs */
+.invoice-item input[name="itemType[]"] {
+    flex: 3; /* More space for the item type */
+}
+.invoice-item input[name="itemCount[]"],
+.invoice-item input[name="itemValue[]"] {
+    flex: 1.2; /* Slightly more space for numbers */
+}
+.invoice-item input[name="itemNotes[]"] {
+    flex: 2; /* Medium space for notes */
+}
+
+.invoice-item .btn-delete {
+    margin-right: -0.5rem; /* Adjust position */
+}
+
+.invoice-items-header {
+    display: flex;
+    gap: 0.75rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #495057;
+    padding: 0 0.5rem;
+    align-items: center; /* Vertically align labels */
+}
+
+.invoice-items-header span:nth-child(1) { flex: 3; }
+.invoice-items-header span:nth-child(2) { flex: 1; }
+.invoice-items-header span:nth-child(3) { flex: 1; }
+.invoice-items-header span:nth-child(4) { flex: 2; }
+.invoice-items-header span:nth-child(5) { width: 30px; } /* Space for delete icon */
+
+
+#invoiceItemsContainer {
+    max-height: 300px;
+    overflow-y: auto;
+    padding: 1rem; /* Add padding */
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+}
+
+/* Side Panel Styles */
+.side-panel {
+    position: fixed;
+    top: 0;
+    left: -400px; /* Start off-screen */
+    width: 400px;
+    height: 100%;
+    background-color: #fff;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.1);
+    z-index: 1002;
+    transition: left 0.4s ease-in-out;
+    display: flex;
+    flex-direction: column;
+}
+
+.side-panel.open {
+    left: 0;
+}
+
+.side-panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
+    border-bottom: 1px solid #e9ecef;
+    background-color: #f8f9fa;
+}
+
+.side-panel-header h3 {
+    font-size: 1.25rem;
+    color: #2c3e50;
+}
+
+.side-panel-close {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #a0aec0;
+    transition: color 0.3s ease;
+}
+
+.side-panel-close:hover {
+    color: #4a5568;
+}
+
+.side-panel-body {
+    padding: 1.5rem;
+    overflow-y: auto;
+    flex-grow: 1;
+}
+
+.invoices-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.invoices-list li {
+    padding: 1rem;
+    border-bottom: 1px solid #e9ecef;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.invoices-list li:hover {
+    background-color: #f1f3f5;
+}
+
+.invoices-list li span {
+    font-size: 1rem;
+    color: #495057;
+}
+
+/* Invoice Details Modal Specific Styles */
+#invoiceDetailsModal .modal-content {
+    max-width: 800px; /* Wider for invoice details */
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+#invoiceDetailsModal .modal-header {
+    background-color: #f8f9fa;
+    border-bottom: 2px solid #e9ecef;
+    margin-bottom: 1.5rem;
+    padding: 1.5rem 2rem;
+    border-radius: 8px 8px 0 0;
+}
+
+#invoiceDetailsModal .modal-header h3 {
+    font-size: 1.8rem;
+    color: #2c3e50;
+    font-weight: 700;
+}
+
+.invoice-meta {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+    padding: 0 1rem;
+    font-size: 1.1rem;
+    color: #555;
+}
+
+.invoice-meta span {
+    flex: 1 1 45%; /* Allow items to wrap and take about half width */
+    margin-bottom: 0.5rem;
+}
+
+.invoice-meta strong {
+    color: #333;
+}
+
+#invoiceDetailsBody .table-container {
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-top: 1.5rem;
+}
+
+#invoiceDetailsBody .items-table th,
+#invoiceDetailsBody .items-table td {
+    padding: 1rem 1.2rem;
+    font-size: 0.95rem;
+}
+
+#invoiceDetailsBody .items-table thead {
+    background-color: #eef2ff; /* Light blue header for invoice table */
+}
+
+#invoiceDetailsBody .items-table th {
+    color: #4338ca; /* Darker blue for header text */
+}
+
+/* Search box in side panel */
+.side-panel-search {
+    margin-bottom: 1rem;
+}
+
+.side-panel-search input {
+    width: 100%;
+    padding-right: 2.5rem; /* Space for icon */
+}
+
+.side-panel-search i {
+    right: 1rem; /* Position icon on the right for RTL */
+    left: auto;
+}
+
+/* Warehouse Report Styles */
+.container {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.filters {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.filters label {
+    font-weight: bold;
+}
+
+.filters input, .filters select {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+#reportTable {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#reportTable th, #reportTable td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+#reportTable th {
+    background-color: #f2f2f2;
+}

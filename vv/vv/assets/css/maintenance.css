@@ -1,0 +1,37 @@
+/* Maintenance Page Specific Styles */
+
+.maintenance-header {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+#addMaintenanceModal .modal-content {
+    max-width: 600px;
+}
+
+#addMaintenanceForm .form-group {
+    margin-bottom: 15px;
+}
+
+#addMaintenanceForm label {
+    font-weight: 600;
+    margin-bottom: 5px;
+    display: block;
+}
+
+#addMaintenanceForm input[type="text"],
+#addMaintenanceForm textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-family: 'Cairo', sans-serif;
+}
+
+#addMaintenanceForm textarea {
+    resize: vertical;
+}

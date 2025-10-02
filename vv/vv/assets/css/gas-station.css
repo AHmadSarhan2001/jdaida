@@ -1,0 +1,1171 @@
+/* Gas Station Page Styles - Modern Design System */
+/* Based on main style.css design system */
+
+/* Import main styles for consistency */
+@import url('../style.css');
+
+/* Gas Station Specific Variables */
+:root {
+    --gas-primary: #006400;
+    --gas-secondary: #228B22;
+    --gas-accent: #D4A017;
+    --gas-warning: #ffc107;
+    --gas-danger: #dc3545;
+    --gas-info: #17a2b8;
+    --gas-light: #f8f9fa;
+    --gas-dark: #343a40;
+    
+    --border-radius: 8px;
+    --border-radius-lg: 12px;
+    --box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    --box-shadow-lg: 0 4px 20px rgba(0, 0, 0, 0.15);
+    --transition: all 0.3s ease;
+    
+    --font-primary: 'Cairo', sans-serif;
+    --font-size-base: 1rem;
+    --font-size-sm: 0.875rem;
+    --font-size-lg: 1.125rem;
+}
+
+/* Gas Station Page Container */
+#page-gas-station {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    min-height: 100vh;
+    direction: rtl;
+    font-family: var(--font-primary);
+    display: flex;
+}
+
+/* Gas Station Sidebar */
+.gas-station-sidebar {
+    width: 280px;
+    background: linear-gradient(135deg, var(--gas-primary), var(--gas-secondary));
+    color: white;
+    height: 100vh;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 100;
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+    padding: 2rem 0;
+    overflow-y: auto;
+}
+
+.gas-station-sidebar-header {
+    padding: 1.5rem 1.5rem 2rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.gas-station-sidebar-header h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    margin: 0;
+    color: white;
+}
+
+.gas-station-sidebar-header i {
+    font-size: 1.8rem;
+    color: var(--gas-accent);
+}
+
+/* Gas Station Sidebar Navigation */
+.gas-station-nav {
+    padding: 0 1rem;
+}
+
+.gas-station-nav-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.gas-station-nav-item {
+    margin: 0.25rem 0;
+}
+
+.gas-station-nav-link {
+    display: flex;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border-right: 3px solid transparent;
+    border-radius: 0 8px 8px 0;
+    margin-right: 0.5rem;
+}
+
+.gas-station-nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    border-right-color: var(--gas-accent);
+    transform: translateX(-5px);
+}
+
+.gas-station-nav-link.active {
+    background-color: rgba(255, 255, 255, 0.15);
+    color: white;
+    border-right-color: var(--gas-accent);
+}
+
+.gas-station-nav-link i {
+    margin-left: 0.75rem;
+    font-size: 1.1rem;
+    width: 20px;
+    text-align: center;
+}
+
+.gas-station-nav-link span {
+    font-weight: 500;
+}
+
+/* Gas Station Main Content */
+.gas-station-content {
+    flex: 1;
+    margin-right: 280px;
+    padding: 2rem;
+    overflow-y: auto;
+}
+
+/* Gas Station Tab Content - Now as sections within content */
+.gas-station-section {
+    display: none;
+    background: white;
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--box-shadow);
+    margin-bottom: 2rem;
+    overflow: hidden;
+}
+
+.gas-station-section.active {
+    display: block;
+    animation: fadeInUp 0.4s ease;
+}
+
+/* Hide original horizontal tabs */
+.gas-tabs {
+    display: none;
+}
+
+/* Section Header */
+.section-header {
+    background: white;
+    padding: 2rem;
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--box-shadow);
+    margin-bottom: 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.section-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--gas-primary), var(--gas-secondary), var(--gas-accent));
+}
+
+.section-header h2 {
+    color: #251c07;
+    font-size: 1.75rem;
+    font-weight: 600;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.section-header i {
+    color: var(--gas-primary);
+    font-size: 1.5rem;
+}
+
+/* Gas Station Section Content */
+.gas-station-section-content {
+    padding: 2rem;
+}
+
+/* Section Headers within Gas Station */
+.gas-station-section-header {
+    background: white;
+    padding: 1.5rem 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    margin-bottom: 1.5rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.gas-station-section-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--gas-primary), var(--gas-secondary));
+}
+
+.gas-station-section-header h3 {
+    color: #251c07;
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.gas-station-section-header i {
+    color: var(--gas-primary);
+    font-size: 1.2rem;
+}
+
+/* Gas Station Cards */
+.gas-station-card {
+    background: white;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    transition: var(--transition);
+    border: 1px solid #e9ecef;
+}
+
+.gas-station-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--box-shadow-lg);
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Modern Cards System */
+.card {
+    background: white;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    transition: var(--transition);
+    border: 1px solid #e9ecef;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--box-shadow-lg);
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.card-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #251c07;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.card-title i {
+    color: var(--gas-primary);
+}
+
+/* Stat Cards for Dashboard */
+.stat-card {
+    background: linear-gradient(135deg, #f8f9fa 0%, white 100%);
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+    text-align: center;
+    box-shadow: var(--box-shadow);
+    transition: var(--transition);
+    border-left: 4px solid var(--gas-primary);
+}
+
+.stat-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.stat-card.diesel {
+    border-left-color: #006400;
+}
+
+.stat-card.gasoline {
+    border-left-color: #ffc107;
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--gas-primary);
+    margin-bottom: 0.5rem;
+    line-height: 1;
+}
+
+.stat-label {
+    color: #6c757d;
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Modern Forms */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #333333;
+    font-size: var(--font-size-sm);
+}
+
+.form-control {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid #ced4da;
+    border-radius: var(--border-radius);
+    font-family: var(--font-primary);
+    font-size: var(--font-size-base);
+    transition: var(--transition);
+    background: white;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--gas-primary);
+    box-shadow: 0 0 0 0.2rem rgba(0, 100, 0, 0.25);
+    transform: translateY(-1px);
+}
+
+.form-control[type="number"] {
+    appearance: textfield;
+    -moz-appearance: textfield;
+}
+
+.form-control[type="number"]::-webkit-outer-spin-button,
+.form-control[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Select Elements */
+.form-select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+    background-position: left 0.75rem center;
+    background-repeat: no-repeat;
+    background-size: 1.5em 1.5em;
+    padding-left: 2.5rem;
+    padding-right: 1rem;
+    cursor: pointer;
+}
+
+[dir="rtl"] .form-select {
+    background-position: right 0.75rem center;
+    padding-right: 2.5rem;
+    padding-left: 1rem;
+}
+
+/* Buttons */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: var(--border-radius);
+    font-family: var(--font-primary);
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+    transition: var(--transition);
+    font-size: var(--font-size-base);
+    min-height: 44px;
+    justify-content: center;
+}
+
+.btn i {
+    font-size: 1.1rem;
+}
+
+.btn-primary {
+    background: var(--gas-primary);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: var(--gas-secondary);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 100, 0, 0.3);
+}
+
+.btn-secondary {
+    background: #6c757d;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background: #5a6268;
+}
+
+.btn-success {
+    background: #28a745;
+    color: white;
+}
+
+.btn-success:hover {
+    background: #218838;
+}
+
+.btn-warning {
+    background: var(--gas-accent);
+    color: #212529;
+}
+
+.btn-warning:hover {
+    background: #e0a800;
+}
+
+.btn-danger {
+    background: var(--gas-danger);
+    color: white;
+}
+
+.btn-danger:hover {
+    background: #c82333;
+}
+
+.btn-info {
+    background: var(--gas-info);
+    color: white;
+}
+
+.btn-info:hover {
+    background: #117a8b;
+}
+
+.btn-outline-primary {
+    background: transparent;
+    color: var(--gas-primary);
+    border: 2px solid var(--gas-primary);
+}
+
+.btn-outline-primary:hover {
+    background: var(--gas-primary);
+    color: white;
+}
+
+.btn-icon {
+    padding: 0.5rem;
+    min-width: auto;
+    width: 44px;
+    height: 44px;
+    justify-content: center;
+}
+
+.btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none !important;
+}
+
+/* Modern Tables */
+.table-container {
+    overflow-x: auto;
+    background: white;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    margin-bottom: 1.5rem;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--font-size-sm);
+}
+
+.table th {
+    background: linear-gradient(135deg, var(--gas-primary), var(--gas-secondary));
+    color: white;
+    padding: 1rem 0.75rem;
+    text-align: right;
+    font-weight: 600;
+    position: relative;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.table th:hover {
+    background: var(--gas-secondary);
+}
+
+.table th i {
+    margin-right: 0.5rem;
+    opacity: 0.8;
+}
+
+.table td {
+    padding: 1rem 0.75rem;
+    border-bottom: 1px solid #e9ecef;
+    vertical-align: middle;
+}
+
+.table tbody tr {
+    transition: var(--transition);
+}
+
+.table tbody tr:hover {
+    background: rgba(0, 100, 0, 0.02);
+}
+
+.table tbody tr:nth-child(even) {
+    background: rgba(0, 0, 0, 0.02);
+}
+
+.table .btn-icon {
+    margin: 0 0.25rem;
+    padding: 0.25rem;
+    width: 32px;
+    height: 32px;
+    font-size: 0.875rem;
+}
+
+/* Search Input */
+.search-group {
+    position: relative;
+    margin-bottom: 1.5rem;
+    max-width: 400px;
+}
+
+.search-input {
+    padding-right: 2.5rem;
+    border-radius: var(--border-radius);
+    border: 1px solid #ced4da;
+    width: 100%;
+    transition: var(--transition);
+}
+
+.search-input:focus {
+    border-color: var(--gas-primary);
+    box-shadow: 0 0 0 0.2rem rgba(0, 100, 0, 0.25);
+}
+
+.search-icon {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #6c757d;
+    pointer-events: none;
+}
+
+/* Tank Cards - Modern Design */
+.tank-card {
+    background: linear-gradient(135deg, #f8f9fa 0%, white 100%);
+    border-radius: var(--border-radius-lg);
+    padding: 2rem;
+    text-align: center;
+    box-shadow: var(--box-shadow);
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #e9ecef;
+}
+
+.tank-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--gas-primary), var(--gas-secondary));
+}
+
+.tank-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.tank-card.diesel-tank {
+    border-left: 5px solid #006400;
+}
+
+.tank-card.gasoline-tank {
+    border-left: 5px solid #ffc107;
+}
+
+.tank-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.tank-icon.diesel {
+    color: #006400;
+}
+
+.tank-icon.gasoline {
+    color: #ffc107;
+}
+
+.tank-level-container {
+    position: relative;
+    height: 200px;
+    margin: 1.5rem 0;
+    background: #e9ecef;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+}
+
+.level-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 0%;
+    background: linear-gradient(45deg, var(--gas-primary), var(--gas-secondary));
+    transition: height 1.5s ease;
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    0% { background-position: -200px 0; }
+    100% { background-position: 200px 0; }
+}
+
+.level-bar.low {
+    background: linear-gradient(45deg, var(--gas-danger), #dc3545);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+.level-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: white;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    z-index: 2;
+}
+
+.tank-info {
+    margin: 1.5rem 0;
+}
+
+.tank-info p {
+    margin: 0.5rem 0;
+    font-size: var(--font-size-sm);
+    color: #6c757d;
+}
+
+.tank-info strong {
+    color: #333333;
+    font-weight: 600;
+}
+
+.tank-status {
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.tank-status.active {
+    background: rgba(40, 167, 69, 0.1);
+    color: #28a745;
+    border: 1px solid #28a745;
+}
+
+.tank-status.good {
+    background: rgba(255, 193, 7, 0.1);
+    color: #ffc107;
+    border: 1px solid #ffc107;
+}
+
+.tank-status.low {
+    background: rgba(220, 53, 69, 0.1);
+    color: var(--gas-danger);
+    border: 1px solid var(--gas-danger);
+}
+
+.tank-actions {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: center;
+    margin-top: 1.5rem;
+}
+
+/* Vehicle Cards */
+.vehicle-card {
+    background: white;
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+    box-shadow: var(--box-shadow);
+    transition: var(--transition);
+    border: 1px solid #e9ecef;
+    margin-bottom: 1.5rem;
+}
+
+.vehicle-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.vehicle-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.vehicle-code {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--gas-primary);
+}
+
+.vehicle-type {
+    background: var(--gas-light);
+    padding: 0.25rem 0.75rem;
+    border-radius: 15px;
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+    color: #6c757d;
+}
+
+.vehicle-details {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.vehicle-detail {
+    text-align: center;
+    padding: 1rem;
+    background: var(--gas-light);
+    border-radius: var(--border-radius);
+}
+
+.vehicle-detail-label {
+    font-size: var(--font-size-sm);
+    color: #6c757d;
+    margin-bottom: 0.25rem;
+    font-weight: 500;
+}
+
+.vehicle-detail-value {
+    font-weight: 600;
+    color: #333333;
+    font-size: 1rem;
+}
+
+.vehicle-status {
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: inline-block;
+}
+
+.vehicle-status.active {
+    background: rgba(40, 167, 69, 0.1);
+    color: #28a745;
+    border: 1px solid #28a745;
+}
+
+.vehicle-status.inactive {
+    background: rgba(108, 117, 125, 0.1);
+    color: #6c757d;
+    border: 1px solid #6c757d;
+}
+
+.vehicle-actions {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+/* Report Cards */
+.report-card {
+    background: linear-gradient(135deg, white 0%, #f8f9fa 100%);
+    border-radius: var(--border-radius);
+    padding: 2rem;
+    text-align: center;
+    box-shadow: var(--box-shadow);
+    transition: var(--transition);
+    border: 1px solid #e9ecef;
+    margin-bottom: 1.5rem;
+}
+
+.report-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.report-card.consumption {
+    border-left: 4px solid #006400;
+}
+
+.report-card.cost {
+    border-left: 4px solid #ffc107;
+}
+
+.report-card.efficiency {
+    border-left: 4px solid #28a745;
+}
+
+.report-card.alerts {
+    border-left: 4px solid var(--gas-danger);
+}
+
+.report-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.report-icon.consumption { color: #006400; }
+.report-icon.cost { color: #ffc107; }
+.report-icon.efficiency { color: #28a745; }
+.report-icon.alerts { color: var(--gas-danger); }
+
+.report-number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--gas-primary);
+    margin-bottom: 0.5rem;
+    line-height: 1;
+}
+
+.report-label {
+    color: #6c757d;
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Chart Placeholders */
+.chart-placeholder {
+    background: var(--gas-light);
+    border: 2px dashed #dee2e6;
+    border-radius: var(--border-radius);
+    padding: 3rem 2rem;
+    text-align: center;
+    color: #6c757d;
+    cursor: pointer;
+    transition: var(--transition);
+    margin-bottom: 1.5rem;
+}
+
+.chart-placeholder:hover {
+    background: rgba(0, 100, 0, 0.05);
+    border-color: var(--gas-primary);
+    color: var(--gas-primary);
+    transform: scale(1.02);
+}
+
+.chart-placeholder i {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+/* Report Filters */
+.report-filters {
+    background: white;
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    margin-bottom: 2rem;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.date-picker-group {
+    display: none;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.date-picker-group.active {
+    display: flex;
+}
+
+/* Tank History Table */
+.tank-history {
+    margin-top: 2rem;
+}
+
+.tank-history .table th {
+    background: linear-gradient(135deg, #e9ecef, #f8f9fa);
+    color: #333333;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    #page-gas-station {
+        flex-direction: column;
+    }
+    
+    .gas-station-sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+        order: 2;
+    }
+    
+    .gas-station-content {
+        margin-right: 0;
+        order: 1;
+        padding: 1rem;
+    }
+    
+    .gas-station-section-header,
+    .gas-station-section-content {
+        padding: 1.5rem;
+    }
+    
+    .tank-card {
+        padding: 1.5rem;
+    }
+    
+    .tank-level-container {
+        height: 150px;
+    }
+    
+    .vehicle-details {
+        grid-template-columns: 1fr;
+    }
+    
+    .report-filters {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .btn {
+        width: 100%;
+        justify-content: center;
+        margin-bottom: 0.5rem;
+    }
+    
+    .gas-station-nav-link {
+        justify-content: center;
+        margin-right: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .gas-station-sidebar-header h2 {
+        font-size: 1.25rem;
+    }
+    
+    .gas-station-nav-link {
+        padding: 0.75rem 1rem;
+        font-size: 0.9rem;
+    }
+    
+    .gas-station-section-header h3 {
+        font-size: 1.1rem;
+    }
+    
+    .stat-number,
+    .report-number {
+        font-size: 2rem;
+    }
+    
+    .tank-icon {
+        font-size: 2.5rem;
+    }
+    
+    .level-text {
+        font-size: 1.25rem;
+    }
+    
+    .table {
+        font-size: 0.75rem;
+    }
+    
+    .table td,
+    .table th {
+        padding: 0.5rem 0.25rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .stat-number,
+    .report-number {
+        font-size: 2rem;
+    }
+    
+    .tank-icon {
+        font-size: 2.5rem;
+    }
+    
+    .level-text {
+        font-size: 1.25rem;
+    }
+    
+    .table {
+        font-size: 0.75rem;
+    }
+    
+    .table td,
+    .table th {
+        padding: 0.5rem 0.25rem;
+    }
+}
+
+/* Loading Animations */
+.loading {
+    position: relative;
+    color: transparent;
+}
+
+.loading::after {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    top: 50%;
+    left: 50%;
+    margin-left: -8px;
+    margin-top: -8px;
+    border: 2px solid transparent;
+    border-top-color: currentColor;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Success/Error Messages */
+.notification {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+    min-width: 300px;
+    padding: 1rem 1.5rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow-lg);
+    color: white;
+    font-weight: 500;
+    animation: slideDown 0.3s ease;
+}
+
+.notification.success {
+    background: linear-gradient(135deg, #28a745, #20c997);
+}
+
+.notification.error {
+    background: linear-gradient(135deg, #dc3545, #fd7e14);
+}
+
+.notification.warning {
+    background: linear-gradient(135deg, #ffc107, #fd7e14);
+}
+
+.notification.info {
+    background: linear-gradient(135deg, #17a2b8, #6f42c1);
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--gas-primary);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--gas-secondary);
+}
+
+/* Print Styles */
+@media print {
+    .gas-tabs,
+    .btn,
+    .search-group {
+        display: none;
+    }
+    
+    .table {
+        box-shadow: none;
+        border: 1px solid #dee2e6;
+    }
+    
+    #page-gas-station {
+        background: white;
+        padding: 0;
+    }
+}

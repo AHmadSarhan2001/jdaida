@@ -1,0 +1,119 @@
+<div class="report-container">
+    <h2>تقرير الآليات</h2>
+
+    <!-- Filters Section -->
+    <div class="filters-section card">
+        <div class="form-group">
+            <label for="searchVehicleCode">البحث عن آلية (ادخل الكود)</label>
+            <input type="text" id="searchVehicleCode" placeholder="مثال: TR-01">
+        </div>
+        <div class="form-group">
+            <label for="dateRange">تحديد الفترة الزمنية</label>
+            <select id="dateRange">
+                <option value="all">كل الأوقات</option>
+                <option value="today">اليوم</option>
+                <option value="this_week">هذا الأسبوع</option>
+                <option value="this_month" selected>هذا الشهر</option>
+                <option value="custom">فترة مخصصة</option>
+            </select>
+        </div>
+        <div class="form-group date-picker-group" id="customDateRange" style="display: none;">
+            <label for="startDate">من تاريخ</label>
+            <input type="date" id="startDate">
+            <label for="endDate">إلى تاريخ</label>
+            <input type="date" id="endDate">
+        </div>
+        <div class="filter-actions">
+            <button class="btn btn-primary" onclick="applyVehicleReportFilter()">
+                <i class="fas fa-search"></i> عرض التقرير
+            </button>
+            <button class="btn btn-secondary" onclick="resetVehicleReportFilter()">
+                <i class="fas fa-undo"></i> إعادة تعيين
+            </button>
+        </div>
+    </div>
+
+    <!-- Report Results Section -->
+    <div id="report-results" class="report-results">
+        <!-- View for All Vehicles -->
+        <div id="all-vehicles-view">
+            <h3>التقرير الشامل للآليات</h3>
+            <div class="table-container">
+                <table class="items-table">
+                    <thead>
+                        <tr>
+                            <th>كود الآلية</th>
+                            <th>النوع</th>
+                            <th>المستلم</th>
+                            <th>رقم اللوحة</th>
+                            <th>نوع الوقود</th>
+                            <th>القسم</th>
+                            <th>آخر حدث صيانة</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>TR-01</td>
+                            <td>شاحنة</td>
+                            <td>أحمد محمد</td>
+                            <td>258456</td>
+                            <td>مازوت</td>
+                            <td>النقل الثقيل</td>
+                            <td>تغيير زيت (2025-08-12)</td>
+                        </tr>
+                        <tr>
+                            <td>GR-101</td>
+                            <td>جرافة</td>
+                            <td>علي محمد</td>
+                            <td>54321</td>
+                            <td>ديزل</td>
+                            <td>قسم الهندسة</td>
+                            <td>إصلاح محرك (2025-08-10)</td>
+                        </tr>
+                         <tr>
+                            <td>FL-103</td>
+                            <td>رافعة شوكية</td>
+                            <td>محمود حسين</td>
+                            <td>12345</td>
+                            <td>ديزل</td>
+                            <td>المستودع</td>
+                            <td>فحص دوري (2025-08-11)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- View for a Specific Vehicle's Maintenance History -->
+        <div id="single-vehicle-view" style="display: none;">
+            <h3>سجل صيانة الآلية: <span id="selectedVehicleCode"></span></h3>
+             <div class="table-container">
+                <table class="items-table">
+                    <thead>
+                        <tr>
+                            <th>تاريخ الصيانة</th>
+                            <th>تفاصيل التصليح</th>
+                            <th>مستلزمات من المستودع</th>
+                            <th>مستلزمات مشتراة</th>
+                        </tr>
+                    </thead>
+                    <tbody id="maintenanceHistoryBody">
+                        <!-- Maintenance records will be populated by JavaScript -->
+                        <tr>
+                            <td>2025-08-12</td>
+                            <td>تغيير زيت المحرك</td>
+                            <td>فلتر زيت (2), زيت محرك (5L)</td>
+                            <td>لا يوجد</td>
+                        </tr>
+                        <tr>
+                            <td>2025-07-20</td>
+                            <td>تغيير إطارات</td>
+                            <td>إطارات (4)</td>
+                            <td>لا يوجد</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
